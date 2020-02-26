@@ -12,6 +12,11 @@ import { ScreenConst, Navigator } from '../../navigation'
 
 
 const HeaderLayout = (props) => {
+
+  const headerPosition = props.headerPosition? props.headerPosition:"relative"
+  const headerSize = props.headerSize? props.headerSize : "20%"
+  const relativeMainViewHeight = (100 - headerSize.substring(0, headerSize.length-1)) + "%"
+  const headerColor = props.headerColor? props.headerColor:"white"
   
   const getLeftComponent = () => {
     if (props.leftHeaderType&&props.leftHeaderComponent){
@@ -81,14 +86,19 @@ const HeaderLayout = (props) => {
   return (
     <View
       style={{
-        flex:1
+        flex:1,
+        zIndex:0
       }}
     >
       <View
         style={{
-          flex:1,
+          width:"100%",
+          height:"20%",
+          opacity:props.headerVisible?1:0,
+          backgroundColor:headerColor,
+          position: headerPosition,
           flexDirection:'row',
-          backgroundColor:'red'
+          zIndex:2
         }}
       >
         <View
@@ -123,7 +133,9 @@ const HeaderLayout = (props) => {
       </View>
       <View
         style = {{
-          flex:5
+          width:"100%",
+          height: headerPosition=="absolute"? "100%" : relativeMainViewHeight,
+          zIndex:1
         }}
       >
         {props.children}
