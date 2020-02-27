@@ -27,7 +27,7 @@ const Type03Screen = (props) => {
       componentId = {props.componentId}
       extraViewSize = {"40%"}
       animationSpeed = {3000}
-      extraViewDirection = {"right"}
+      extraViewDirection = {"bottom"}
       extraViewTrigger = {extraViewTrigger}
       extraView = {
         <View>

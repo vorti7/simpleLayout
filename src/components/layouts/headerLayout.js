@@ -6,7 +6,8 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Animated
 } from 'react-native';
 import { ScreenConst, Navigator } from '../../navigation'
 
@@ -14,9 +15,39 @@ import { ScreenConst, Navigator } from '../../navigation'
 const HeaderLayout = (props) => {
 
   const headerPosition = props.headerPosition? props.headerPosition:"relative"
-  const headerSize = props.headerSize? props.headerSize : "20%"
-  const relativeMainViewHeight = (100 - headerSize.substring(0, headerSize.length-1)) + "%"
+  // const [headerSize, bodySize, iosExtraSize] = props.headerSize? getSize[props.headerSize] : getSize["20%"]
+  const iosSize = Platform.OS === 'ios' ? "3%" : "0%"
+  const headerSize = Platform.OS === 'ios' ? (props.headerSize? (props.headerSize.substring(0,props.headerSize.length-1)-1)+"%" : "19%") : props.headerSize? props.headerSize : "20%"
+  const relativeMainViewHeight = Platform.OS === 'ios' ? (100 - headerSize.substring(0, headerSize.length-1)-2) + "%" : "78%"
   const headerColor = props.headerColor? props.headerColor:"white"
+
+  const [animValue, setAnimValue] = useState(new Animated.Value(props.headerVisible? 1:0))
+  const headerVisibleValue = animValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 1]
+  })
+
+  useEffect(()=>{
+    // console.log(props.headerVisible)
+      if(props.headerVisible){
+        Animated.timing(
+          animValue,
+        {
+            toValue: 1,
+            duration: 300,
+        }
+        ).start();
+      } else {
+        console.log("off")
+        Animated.timing(
+          animValue,
+        {
+            toValue: 0,
+            duration: 300,
+        }
+        ).start();
+      }
+  },[props.headerVisible])
   
   const getLeftComponent = () => {
     if (props.leftHeaderType&&props.leftHeaderComponent){
@@ -90,13 +121,24 @@ const HeaderLayout = (props) => {
         zIndex:0
       }}
     >
-      <View
+      <Animated.View
         style={{
           width:"100%",
-          height:"20%",
-          opacity:props.headerVisible?1:0,
+          height:iosSize,
+          opacity:headerVisibleValue,
           backgroundColor:headerColor,
           position: headerPosition,
+          zIndex:2
+        }}
+      />
+      <Animated.View
+        style={{
+          width:"100%",
+          height:headerSize,
+          opacity:headerVisibleValue,
+          backgroundColor:headerColor,
+          position: headerPosition,
+          top : headerPosition? iosSize : "0%",
           flexDirection:'row',
           zIndex:2
         }}
@@ -130,7 +172,7 @@ const HeaderLayout = (props) => {
         >
           {getRightComponent()}
         </View>
-      </View>
+      </Animated.View>
       <View
         style = {{
           width:"100%",
@@ -143,5 +185,14 @@ const HeaderLayout = (props) => {
     </View>
   );
 };
+
+
+// const getSize = (inputHeaderSize) => {
+//   const headerSize = Platform.OS === 'ios' ? (inputHeaderSize.substring(0, inputHeaderSize.length-1) - 1) + "%" : inputHeaderSize
+//   const bodySize = Platform.OS === 'ios' ? (100 - headerSize.substring(0, headerSize.length-1) - 3) + "%" : (100 - headerSize.substring(0, headerSize.length-1)) + "%"
+//   const iosExtraSize = Platform.OS === 'ios' ? "0%" : "4%"
+
+//   return [headerSize, bodySize, iosExtraSize]
+// }
 
 export default HeaderLayout

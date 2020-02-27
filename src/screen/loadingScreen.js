@@ -17,14 +17,15 @@ import React,{
           flex:1,
           alignItems:'center',
           justifyContent:'center',
+          backgroundColor:'rgba(0,0,0,0.5)',
         }}
       >
         <View
           style={{
             width:"100%",
             height:"100%",
-            backgroundColor:'white',
-            opacity:0.1
+            // backgroundColor:'rgba(0,0,0,0.2)',
+            // opacity:0.1
           }}
         >
 
