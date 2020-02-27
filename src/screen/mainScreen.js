@@ -11,6 +11,9 @@ import React,{
   
   const MainScreen = (props) => {
 
+    const showTest = () => {
+      Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TEST)
+    }
     const showType01 = () => {
       Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TYPE_01)
     }
@@ -36,6 +39,25 @@ import React,{
         }}
       >
         <Text>Main Screen</Text>
+        <TouchableOpacity
+          style={{
+              height: 40,
+              width: '80%',
+              backgroundColor: 'gray',
+              borderWidth: 1,
+              margin:'2.5%',
+              paddingTop:5,
+              alignItems:'center',
+              justifyContent:'center'
+          }}
+          onPress={() => showTest()}
+        >
+          <Text
+            style={{fontWeight:'bold'}}
+          >
+            Test
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={{
               height: 40,

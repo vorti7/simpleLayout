@@ -94,6 +94,9 @@ export default {
           name: targetScreen,
           id: targetId,
           options: {
+            layout: {
+              componentBackgroundColor: "transparent" // <-- Add this line
+            },
             overlay: {
               interceptTouchOutside: true
             }

@@ -7,7 +7,6 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-import { ExtraViewLayout } from '../components'
 import { ExtraViewByCoverLayout } from '../components/layouts';
 
 const Type03Screen = (props) => {
@@ -25,11 +24,12 @@ const Type03Screen = (props) => {
   return (
     <ExtraViewByCoverLayout
       componentId = {props.componentId}
-      extraViewSize = {"40%"}
-      animationSpeed = {3000}
-      extraViewDirection = {"bottom"}
-      extraViewTrigger = {extraViewTrigger}
-      extraView = {
+      extraViewSize = {"40%"} // Extra View Size ( extraViewDirection(top/bottom) - heightSize, extraViewDirection(left/right) - widthSize )
+      animationSpeed = {100} // AnimationSpeed
+      extraViewDirection = {"bottom"} // Extra View Show Direction top/bottom/left/right
+      extraViewTrigger = {extraViewTrigger} // Extra View On/Off
+      unableMain = {true} //Unable Main View when Extra show.
+      extraView = { //ExtraView Contents
         <View>
           <Text>Extra View TestingExtra View TestingExtra View TestingExtra View Testing</Text>
           <TouchableOpacity

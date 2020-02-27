@@ -179,8 +179,10 @@ import React,{
             </View>
           }
           // onScroll={()=>{console.log("Drrrrr")}}
-          onMomentumScrollBegin={()=>{setHeaderShow(false)}}
-          onMomentumScrollEnd={()=>{setHeaderShow(true)}}
+          // onMomentumScrollBegin={()=>{setHeaderShow(false)}}
+          // onMomentumScrollEnd={()=>{setHeaderShow(true)}}
+          onScrollBeginDrag={()=>{setHeaderShow(false)}}
+          onScrollEndDrag={()=>{setHeaderShow(true)}}
         >
 
         </FlatList>

@@ -5,7 +5,8 @@ import React,{
   import {
     View,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
   } from 'react-native';
   import { ScreenConst, Navigator } from '../navigation'
   
@@ -17,10 +18,11 @@ import React,{
           flex:1,
           alignItems:'center',
           justifyContent:'center',
-          backgroundColor:'rgba(0,0,0,0.5)',
+          backgroundColor:'rgba(51, 170, 51, .2)',
+          // backgroundColor:'transparent'
         }}
       >
-        <View
+        {/* <View
           style={{
             width:"100%",
             height:"100%",
@@ -41,7 +43,11 @@ import React,{
           }}
         >
           <Text>Loading...</Text>
-        </View>
+        </View> */}
+        <Image
+          style={{width: 250, height: 250}}
+          source={{uri: 'https://thumbs.gfycat.com/GoodnaturedCleverGroundbeetle-size_restricted.gif'}}
+        />
       </View>
     );
   };
