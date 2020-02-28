@@ -14,6 +14,9 @@ import React,{
     const showTest = () => {
       Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TEST)
     }
+    const showTestTouch = () => {
+      Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TEST_TOUCH)
+    }
     const showType01 = () => {
       Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TYPE_01)
     }
@@ -28,6 +31,9 @@ import React,{
     }
     const showType05 = () => {
       Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TYPE_05)
+    }
+    const showType06 = () => {
+      Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TYPE_06)
     }
 
     return (
@@ -56,6 +62,25 @@ import React,{
             style={{fontWeight:'bold'}}
           >
             Test
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+              height: 40,
+              width: '80%',
+              backgroundColor: 'gray',
+              borderWidth: 1,
+              margin:'2.5%',
+              paddingTop:5,
+              alignItems:'center',
+              justifyContent:'center'
+          }}
+          onPress={() => showTestTouch()}
+        >
+          <Text
+            style={{fontWeight:'bold'}}
+          >
+            Test Touch
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -151,6 +176,25 @@ import React,{
             style={{fontWeight:'bold'}}
           >
             Type05
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+              height: 40,
+              width: '80%',
+              backgroundColor: 'gray',
+              borderWidth: 1,
+              margin:'2.5%',
+              paddingTop:5,
+              alignItems:'center',
+              justifyContent:'center'
+          }}
+          onPress={() => showType06()}
+        >
+          <Text
+            style={{fontWeight:'bold'}}
+          >
+            Type06
           </Text>
         </TouchableOpacity>
       </View>

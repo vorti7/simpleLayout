@@ -14,35 +14,68 @@ import { ScreenConst, Navigator } from '../navigation'
 
 const Type05Screen = (props) => {
   const position = useRef(new Animated.ValueXY());
-  
-  const panResponder = React.useMemo(() => PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onPanResponderMove: (e, gesture) => {
-      console.log(gesture)
-    }
-  }), []);
+  // const [position, setPosition] = useState([0,0])
+  const [ gestureInfos, setGestureInfos ] = useState("")
 
+  useEffect(() =>{
+    console.log(position.current)
+  }, [position.current])
+
+  const panResponder = React.useMemo(() => PanResponder.create({
+    onStartShouldSetPanResponderCapture: (evt, gestureState) => {
+      return true
+    },
+    onPanResponderGrant: (evt, gestureState) => {
+      console.log("gesture started")
+      console.log(position.current.getLayout())
+      // console.log(5)
+      // console.log(gestureState)
+    },
+    onPanResponderMove: Animated.event([null, {
+      dx  : position.current.x,
+      dy  : position.current.y
+    }]),
+    onPanResponderRelease: (evt, gestureState) => {
+      console.log("gesture done")
+      // console.log(7)
+      // console.log(gestureState)
+      // console.log(position.current.getLayout())
+      // setPosition(new Animated.ValueXY({ x: position.current.getLayout().left, y: position.current.getLayout().top }))
+      Animated.spring(
+        position.current,
+        {toValue:{x:0,y:0}}
+      ).start();
+    },
+    // onShouldBlockNativeResponder: (evt, gestureState) => {
+    //   console.log(9)
+    //   // console.log(gestureState)
+    //   return true;
+    // },
+  }), []);
 
   return (
     <View
       style={[styles.main]}
-      {...panResponder.panHandlers}
     >
-      {/* <View
-        style={[styles.innerMain]}
+      <Animated.View
+        style={[position.current.getLayout(), styles.testView]}
+        collapsable={false} // need to get android gesture
         {...panResponder.panHandlers}
       >
 
-      </View> */}
+      </Animated.View>
     </View>
   )
 };
 
 let styles = StyleSheet.create({
   main:{
-    flex:1,
-    alignItems:'center',
-    justifyContent:'center',
+    flex:1
+  },
+  testView:{
+    width:200,
+    height:150,
+    backgroundColor:'green'
   },
   innerMain:{
     width:"100%",
@@ -54,9 +87,7 @@ let styles = StyleSheet.create({
     width:200,
     height:150,
     backgroundColor:'#6B70D6',
-    alignItems:'center',
-    justifyContent:'center',
   }
 });
   
-  export default Type05Screen
+export default Type05Screen

@@ -12,6 +12,21 @@ import React,{
   const Type01Screen = (props) => {
 
     const [headerShow, setHeaderShow] = useState(true)
+    const [exScrollState, setExScrollState] = useState(0)
+    const [newScrollState, setNewScrollState] = useState(0)
+
+    useEffect(() => {
+      console.log(exScrollState,newScrollState)
+      if(newScrollState-exScrollState>20){
+        console.log("down")
+      }else if(newScrollState-exScrollState<-20){
+        console.log("up")
+        setHeaderShow(false)
+      }else{
+        setHeaderShow(true)
+      }
+      setExScrollState(newScrollState)
+    }, [newScrollState])
 
     const testData = [
       {
@@ -180,9 +195,13 @@ import React,{
           }
           // onScroll={()=>{console.log("Drrrrr")}}
           // onMomentumScrollBegin={()=>{setHeaderShow(false)}}
-          // onMomentumScrollEnd={()=>{setHeaderShow(true)}}
-          onScrollBeginDrag={()=>{setHeaderShow(false)}}
-          onScrollEndDrag={()=>{setHeaderShow(true)}}
+          onMomentumScrollEnd={()=>{setHeaderShow(true)}}
+          // onScrollBeginDrag={()=>{setHeaderShow(false)}}
+          // onScrollEndDrag={()=>{setHeaderShow(true)}}
+          onScroll={event => { 
+            // console.log(event.nativeEvent.contentOffset.y)
+            setNewScrollState(event.nativeEvent.contentOffset.y)
+          }}
         >
 
         </FlatList>

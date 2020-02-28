@@ -13,6 +13,9 @@ export default function registerScreens() {
   Navigation.registerComponent(Const.SCREEN_TEST, () =>
     Screens.TestScreen
   );
+  Navigation.registerComponent(Const.SCREEN_TEST_TOUCH, () => 
+    Screens.testTouchScreen
+  );
   Navigation.registerComponent(Const.SCREEN_TYPE_01, () =>
     Screens.TypeScreen01
   );
@@ -27,6 +30,9 @@ export default function registerScreens() {
   );
   Navigation.registerComponent(Const.SCREEN_TYPE_05, () =>
     Screens.TypeScreen05
+  );
+  Navigation.registerComponent(Const.SCREEN_TYPE_06, () =>
+    Screens.TypeScreen06
   );
 
 

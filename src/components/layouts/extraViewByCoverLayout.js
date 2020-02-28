@@ -4,7 +4,8 @@ import React,{
   } from 'react';
   import {
     View,
-    Animated
+    Animated,
+    PanResponder
   } from 'react-native';
     
     
@@ -18,6 +19,49 @@ const ExtraViewByCoverLayout = (props) => {
     const unableMain = props.unableMain ? props.unableMain : false
     const ONLY100 = "100%"
     const ONLY0 = "0%"
+
+
+    const panResponder = React.useMemo(() => PanResponder.create({
+        // onStartShouldSetPanResponderCapture: (evt, gestureState) => {
+        //     console.log(gestureState)
+        // //   console.log("onStartShouldSetPanResponderCapture\n")
+        //   return true
+        // },
+        onMoveShouldSetPanResponder: (evt, gestureState) => {
+            const { dx, dy } = gestureState
+            return dx > 2 || dx < -2 || dy > 2 || dy < -2
+        },
+        onPanResponderGrant: (evt, gestureState) => {
+        //   console.log("onPanResponderGrant\n")
+        },
+        onPanResponderMove: (evt, gestureState) => {
+            console.log("onPanResponderMove\n")
+            console.log(gestureState.moveX - gestureState.x0)
+            const gestureDistance = 0
+            if(gestureState.moveX - gestureState.x0 > gestureDistance) {
+                console.log("gesture goring right")
+            } else if (gestureState.moveX - gestureState.x0 < -gestureDistance) {
+                console.log("gesture goring left")
+            }
+            
+            console.log(gestureState.moveY - gestureState.y0)
+            if(gestureState.moveY - gestureState.y0 > gestureDistance) {
+                console.log("gesture goring down")
+            } else if (gestureState.moveY - gestureState.y0 < -gestureDistance) {
+                console.log("gesture goring up")
+            }
+        },
+        onPanResponderRelease: (evt, gestureState) => {
+        //   console.log("onPanResponderRelease\n")
+        },
+        onShouldBlockNativeResponder: (evt, gestureState) => {
+        //   console.log("onShouldBlockNativeResponder\n")
+          return true;
+        },
+      }), []);
+
+
+
   
     const [animValue, setAnimValue] = useState(new Animated.Value(0))
 
@@ -121,6 +165,7 @@ const ExtraViewByCoverLayout = (props) => {
                     left:horizontalAttributeValue,
                     zIndex:4
                 }}
+                {...panResponder.panHandlers}
             >
                 {props.extraView}
             </Animated.View>
