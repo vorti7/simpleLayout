@@ -1,24 +1,27 @@
 import React,{
     useState,
     useEffect
-  } from 'react';
-  import {
+} from 'react';
+import {
     View,
     Animated,
     PanResponder
-  } from 'react-native';
+} from 'react-native';
     
     
-const ExtraViewByCoverLayout = (props) => {
+const ExtraViewLayout_Mk_3 = (props) => {
   
     const extraViewSize = props.extraViewSize ? props.extraViewSize : "50%"
     const reverseExtraViewSize = (100 - extraViewSize.substring(0, extraViewSize.length-1)) + "%"
     const animationSpeed = props.animationSpeed ? props.animationSpeed : 1000
-    const extraViewTrigger = props.extraViewTrigger ? props.extraViewTrigger : false;
     const extraViewDirection = props.extraViewDirection ? props.extraViewDirection : "bottom";
     const unableMain = props.unableMain ? props.unableMain : false
+
     const ONLY100 = "100%"
     const ONLY0 = "0%"
+
+
+    const extraViewTrigger = props.extraViewTrigger ? props.extraViewTrigger : false;
 
 
     const panResponder = React.useMemo(() => PanResponder.create({
@@ -58,7 +61,7 @@ const ExtraViewByCoverLayout = (props) => {
         //   console.log("onShouldBlockNativeResponder\n")
           return true;
         },
-      }), []);
+    }), []);
 
 
 
@@ -160,7 +163,6 @@ const ExtraViewByCoverLayout = (props) => {
                     position:'absolute',
                     width:extraViewDirection=="left"||extraViewDirection=="right"? extraViewSize:ONLY100,
                     height:extraViewDirection=="top"||extraViewDirection=="bottom"? extraViewSize:ONLY100,
-                    backgroundColor:'red',
                     top:verticalAttributeValue,
                     left:horizontalAttributeValue,
                     zIndex:4
@@ -174,4 +176,4 @@ const ExtraViewByCoverLayout = (props) => {
     )
 };
   
- export default ExtraViewByCoverLayout
+export default ExtraViewLayout_Mk_3

@@ -13,13 +13,14 @@ import {
 import { ScreenConst, Navigator } from '../navigation'
 
 const Type05Screen = (props) => {
-  const position = useRef(new Animated.ValueXY());
+  // const position = useRef(new Animated.ValueXY());
+  const [position, setPosition] = useState(new Animated.ValueXY());
   // const [position, setPosition] = useState([0,0])
   const [ gestureInfos, setGestureInfos ] = useState("")
 
   useEffect(() =>{
-    console.log(position.current)
-  }, [position.current])
+    console.log(position)
+  }, [position])
 
   const panResponder = React.useMemo(() => PanResponder.create({
     onStartShouldSetPanResponderCapture: (evt, gestureState) => {
@@ -27,30 +28,17 @@ const Type05Screen = (props) => {
     },
     onPanResponderGrant: (evt, gestureState) => {
       console.log("gesture started")
-      console.log(position.current.getLayout())
-      // console.log(5)
-      // console.log(gestureState)
+      position.setOffset(position.__getValue());
+      // console.log(position.__getValue())
+      position.setValue({x: 0, y: 0})
     },
     onPanResponderMove: Animated.event([null, {
-      dx  : position.current.x,
-      dy  : position.current.y
+      dx  : position.x,
+      dy  : position.y
     }]),
     onPanResponderRelease: (evt, gestureState) => {
       console.log("gesture done")
-      // console.log(7)
-      // console.log(gestureState)
-      // console.log(position.current.getLayout())
-      // setPosition(new Animated.ValueXY({ x: position.current.getLayout().left, y: position.current.getLayout().top }))
-      Animated.spring(
-        position.current,
-        {toValue:{x:0,y:0}}
-      ).start();
     },
-    // onShouldBlockNativeResponder: (evt, gestureState) => {
-    //   console.log(9)
-    //   // console.log(gestureState)
-    //   return true;
-    // },
   }), []);
 
   return (
@@ -58,7 +46,7 @@ const Type05Screen = (props) => {
       style={[styles.main]}
     >
       <Animated.View
-        style={[position.current.getLayout(), styles.testView]}
+        style={[position.getLayout(), styles.testView]}
         collapsable={false} // need to get android gesture
         {...panResponder.panHandlers}
       >

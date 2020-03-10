@@ -36,6 +36,34 @@ export default function registerScreens() {
   );
 
 
+  Navigation.registerComponent(Const.SCREEN_NOTUSE_MAIN, () =>
+    Screens.NotUsedMainScreen
+  );
+  Navigation.registerComponent(Const.SCREEN_NOTUSE_TYPE_01, () =>
+    Screens.NotUsedTypeScreen01
+  );
+  Navigation.registerComponent(Const.SCREEN_NOTUSE_TYPE_02, () =>
+    Screens.NotUsedTypeScreen02
+  );
+
+
+  Navigation.registerComponent(Const.SCREEN_CASE_MAIN, () =>
+    Screens.CaseMainScreen
+  );
+  Navigation.registerComponent(Const.SCREEN_CASE_TYPE_01, () =>
+    Screens.CaseScreen01
+  );
+  Navigation.registerComponent(Const.SCREEN_CASE_TYPE_02, () =>
+    Screens.CaseScreen02
+  );
+  Navigation.registerComponent(Const.SCREEN_CASE_TYPE_03, () =>
+    Screens.CaseScreen03
+  );
+  Navigation.registerComponent(Const.SCREEN_CASE_TYPE_04, () =>
+    Screens.CaseScreen04
+  );
+
+
   Navigation.registerComponent(Const.SCREEN_LOADING, () =>
     Screens.LoadingScreen
   );

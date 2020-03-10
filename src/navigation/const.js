@@ -13,4 +13,14 @@ export const SCREEN_TYPE_04 = 'travut.screen.type.04'
 export const SCREEN_TYPE_05 = 'travut.screen.type.05'
 export const SCREEN_TYPE_06 = 'travut.screen.type.06'
 
+export const SCREEN_NOTUSE_MAIN = 'travut.screen.notuse.main'
+export const SCREEN_NOTUSE_TYPE_01 = 'travut.screen.notuse.type.01'
+export const SCREEN_NOTUSE_TYPE_02 = 'travut.screen.notuse.type.02'
+
+export const SCREEN_CASE_MAIN = 'travut.screen.case.main'
+export const SCREEN_CASE_TYPE_01 = 'travut.screen.case.type.01'
+export const SCREEN_CASE_TYPE_02 = 'travut.screen.case.type.02'
+export const SCREEN_CASE_TYPE_03 = 'travut.screen.case.type.03'
+export const SCREEN_CASE_TYPE_04 = 'travut.screen.case.type.04'
+
 export const SCREEN_LOADING = 'travut.screen.loading'

@@ -1,6 +1,8 @@
 import {
     HeaderLayout,
-    ExtraViewLayout
+    ExtraViewLayout_Mk_1,
+    ExtraViewLayout_Mk_2,
+    ExtraViewLayout_Mk_3
 } from './layouts';
 
 import {
@@ -9,6 +11,8 @@ import {
 
 export {
     HeaderLayout,
-    ExtraViewLayout,
+    ExtraViewLayout_Mk_1,
+    ExtraViewLayout_Mk_2,
+    ExtraViewLayout_Mk_3,
     AbsoluteComponent
 };

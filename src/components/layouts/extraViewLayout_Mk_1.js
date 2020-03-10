@@ -8,7 +8,7 @@ import {
 } from 'react-native';
   
   
-const ExtraViewLayout = (props) => {
+const ExtraViewLayout_Mk_1 = (props) => {
 
   const extraViewSize = props.extraViewSize ? props.extraViewSize : "50%"
   const mainViewSize = (100 - extraViewSize.substring(0, extraViewSize.length-1)) + "%"
@@ -189,4 +189,4 @@ const ExtraViewLayout = (props) => {
   );
 };
 
-export default ExtraViewLayout
+export default ExtraViewLayout_Mk_1
