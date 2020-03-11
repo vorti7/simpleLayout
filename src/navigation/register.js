@@ -62,6 +62,17 @@ export default function registerScreens() {
   Navigation.registerComponent(Const.SCREEN_CASE_TYPE_04, () =>
     Screens.CaseScreen04
   );
+  Navigation.registerComponent(Const.SCREEN_CASE_TYPE_05, () =>
+    Screens.CaseScreen05
+  );
+  Navigation.registerComponent(Const.SCREEN_CASE_TYPE_06, () =>
+    Screens.CaseScreen06
+  );
+
+  Navigation.registerComponent(Const.SCREEN_CASE_TYPE_07, () =>
+    Screens.CaseScreen07
+  );
+
 
 
   Navigation.registerComponent(Const.SCREEN_LOADING, () =>

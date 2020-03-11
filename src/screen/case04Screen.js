@@ -8,7 +8,9 @@ import {
     ScrollView,
     Animated,
     Text,
-    FlatList
+    FlatList,
+    TouchableOpacity,
+    Image
 } from 'react-native';
 
 const Case04Screen = (props) => {
@@ -27,6 +29,135 @@ const Case04Screen = (props) => {
             offer : 0
         }
     }
+
+    const offerData = [
+        {
+            providerInfo:{
+                name : "Jihyo",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190911124406327-9808989.jpg",
+                providerConnected : false
+            },
+            offerInfo:{
+                tipDuration:4,
+                serviceFee:45,
+            }
+
+        },
+        {
+            providerInfo:{
+                name : "Nayeon",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190914125553789-4837063.jpg",
+                providerConnected : true
+            },
+            offerInfo:{
+                tipDuration:1,
+                serviceFee:15,
+            }
+
+        },
+        {
+            providerInfo:{
+                name : "Jeongyeon",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190911124540768-9994874.jpg",
+                providerConnected : false
+            },
+            offerInfo:{
+                tipDuration:8,
+                serviceFee:100,
+            }
+
+        },
+        {
+            providerInfo:{
+                name : "Momo",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190911124635987-5025054.jpg",
+                providerConnected : true
+            },
+            offerInfo:{
+                tipDuration:0,
+                serviceFee:0,
+            }
+
+        },
+        {
+            providerInfo:{
+                name : "Sana",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190914124723164-9958359.jpg",
+                providerConnected : true
+            },
+            offerInfo:{
+                tipDuration:24,
+                serviceFee:300,
+            }
+
+        },
+        {
+            providerInfo:{
+                name : "Mina",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190914130405117-8485834.jpg",
+                providerConnected : true
+            },
+            offerInfo:{
+                tipDuration:1,
+                serviceFee:10,
+            }
+
+        },
+        {
+            providerInfo:{
+                name : "Dahyun",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190917115034488-1646757.jpg",
+                providerConnected : false
+            },
+            offerInfo:{
+                tipDuration:2,
+                serviceFee:25,
+            }
+
+        },
+        {
+            providerInfo:{
+                name : "Chaeyoung",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190917115349989-3031902.jpg",
+                providerConnected : false
+            },
+            offerInfo:{
+                tipDuration:4,
+                serviceFee:45,
+            }
+
+        },
+        {
+            providerInfo:{
+                name : "Tzuyu",
+                providerLevel : "Super Butler",
+                profileUri : "https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201909%2F20190917115408261-3056408.jpg",
+                providerConnected : false
+            },
+            offerInfo:{
+                tipDuration:4,
+                serviceFee:45,
+            }
+
+        }
+    ]
+
+    // console.log(offerData.filter(offer => offer.providerInfo.providerConnected))
+
+    const [ connectedSelect, setConnectedSelect ] = useState(false)
+    const toggleConnectedSelect = () =>{
+        setConnectedSelect(!connectedSelect)
+    }
+
+
     const createTime = new Date(getDate(progressData.creatTime))
     const expireLong = 1000*60*60*24*10
     const expireTime = new Date(createTime.getTime() + expireLong)
@@ -193,16 +324,50 @@ const Case04Screen = (props) => {
                         style={{
                             width:"100%",
                             height:48,
+                            borderBottomColor:"#e5cfcf",
                             borderBottomWidth:1,
-                            // backgroundColor:'rgba(255,244,239,0.8)',
-                            backgroundColor:'red'
+                            backgroundColor:'rgba(255,244,239,0.8)',
+                            paddingHorizontal:18,
+                            flexDirection:"row"
                         }}
                     >
-
+                        <View
+                            style={{
+                                justifyContent:'center'
+                            }}
+                        >
+                            <Text style={{fontSize:14, color:"#09294d"}}>OFFERS {offerData.length}</Text>
+                        </View>
+                        <View style={{flex:1}}/>
+                        <TouchableOpacity
+                            style={{
+                                justifyContent:'center',
+                                marginRight:12,
+                                borderBottomColor:"#12d294",
+                                borderBottomWidth: !connectedSelect? 3: 0
+                            }}
+                            onPress = {() => toggleConnectedSelect()}
+                        >
+                            <Text style={{fontSize:16, color:"#6b7c8f"}}>All</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{
+                                justifyContent:'center',
+                                marginLeft:12,
+                                borderBottomColor:"#12d294",
+                                borderBottomWidth: connectedSelect? 3: 0
+                            }}
+                            onPress = {() => toggleConnectedSelect()}
+                        >
+                            <Text style={{fontSize:16, color:"#6b7c8f"}}>Connected Only</Text>
+                        </TouchableOpacity>
                     </View>
                     <FlatList
-                        data={[1,2,3,4,5]}
-                        renderItem={({item, index})=> <AOffer/>}
+                        style={{
+                            backgroundColor:'rgba(255,244,239,0.8)',
+                        }}
+                        data={ connectedSelect? offerData.filter(offer => offer.providerInfo.providerConnected) : offerData}
+                        renderItem={({item, index})=> <AOffer item={item}/>}
                     />
                 </View>
 
@@ -233,12 +398,13 @@ const ATag = (props) => {
 }
 
 const AOffer = (props) => {
-
-    const providerName = "Dongkuk Kim"
-    const providerLevel = "Super Butler"
-    const tipDuration = "4 hours"
-    const serviceFee = "$45"
-    const offerStatus = <Text style={{fontSize:13, color:"#12d294"}}>Connected</Text>
+    // console.log(props.item)
+    const providerName = props.item.providerInfo.name ? props.item.providerInfo.name : ""
+    const providerLevel = props.item.providerInfo.providerLevel ? props.item.providerInfo.providerLevel : ""
+    const tipDuration = props.item.offerInfo.tipDuration ? props.item.offerInfo.tipDuration : ""
+    const serviceFee = props.item.offerInfo.serviceFee ? props.item.offerInfo.serviceFee : ""
+    const providerStatus = props.item.providerInfo.providerConnected ? props.item.providerInfo.providerConnected : false
+    const profileUri = props.item.providerInfo.profileUri ? props.item.providerInfo.profileUri : ""
 
     return(
         <View
@@ -270,12 +436,14 @@ const AOffer = (props) => {
                             justifyContent:'center'
                         }}
                     >
-                        <View
+
+                        <Image
                             style={{
                                 width:56,
                                 height:56,
-                                backgroundColor:'red'
+                                borderRadius:28
                             }}
+                            source={{uri:profileUri}}
                         />
 
                     </View>
@@ -335,7 +503,7 @@ const AOffer = (props) => {
                         }}
                     >
                         <Text style={{fontSize:13, color:"#6b7c8f"}}>Tip Duration</Text>
-                        <Text style={{fontSize:16, color:"#09294d"}}>{tipDuration}</Text>
+                        <Text style={{fontSize:16, color:"#09294d"}}>{tipDuration} Hours</Text>
                     </View>
                     <View
                         style={{
@@ -343,19 +511,20 @@ const AOffer = (props) => {
                         }}
                     >
                         <Text style={{fontSize:13, color:"#6b7c8f"}}>Service Fee</Text>
-                        <Text style={{fontSize:16, color:"#09294d"}}>{serviceFee}</Text>
+                        <Text style={{fontSize:16, color:"#09294d"}}>$ {serviceFee}</Text>
                     </View>
 
                 </View>
-                <View
-                    style={{
-                        paddingVertical:10,
-                        paddingLeft:12
-                    }}
-                >
-                    {offerStatus}
-                </View>
-
+                {providerStatus? (
+                    <View
+                        style={{
+                            paddingVertical:10,
+                            paddingLeft:12
+                        }}
+                    >
+                        <Text style={{fontSize:13, color:"#12d294"}}>Connected</Text>
+                    </View>
+                ):<View/>}
             </View>
         </View>
     )
@@ -387,6 +556,10 @@ const getRemain = (dateTime) => {
         const leftHour = Math.floor(dateTime / AHOUR) < 10 ? "0"+Math.floor(dateTime / AHOUR) : Math.floor(dateTime / AHOUR)
         const leftMinute = Math.floor((dateTime - leftHour*AHOUR)/ AMINUTE) < 10 ? "0"+Math.floor((dateTime - leftHour*AHOUR)/ AMINUTE) : Math.floor((dateTime - leftHour*AHOUR)/ AMINUTE)
         return leftHour + ":" + leftMinute
+    } else if (dateTime>0){
+        return "Soon"
+    } else {
+        return "Expired"
     }
 }
 

@@ -22,5 +22,8 @@ export const SCREEN_CASE_TYPE_01 = 'travut.screen.case.type.01'
 export const SCREEN_CASE_TYPE_02 = 'travut.screen.case.type.02'
 export const SCREEN_CASE_TYPE_03 = 'travut.screen.case.type.03'
 export const SCREEN_CASE_TYPE_04 = 'travut.screen.case.type.04'
+export const SCREEN_CASE_TYPE_05 = 'travut.screen.case.type.05'
+export const SCREEN_CASE_TYPE_06 = 'travut.screen.case.type.06'
+export const SCREEN_CASE_TYPE_07 = 'travut.screen.case.type.07'
 
 export const SCREEN_LOADING = 'travut.screen.loading'
