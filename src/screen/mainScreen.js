@@ -35,6 +35,9 @@ import React,{
     const showType06 = () => {
       Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TYPE_06)
     }
+    const showType07 = () => {
+      Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_TYPE_07)
+    }
 
     return (
       <View
@@ -195,6 +198,25 @@ import React,{
             style={{fontWeight:'bold'}}
           >
             Type06
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+              height: 40,
+              width: '80%',
+              backgroundColor: 'gray',
+              borderWidth: 1,
+              margin:'2.5%',
+              paddingTop:5,
+              alignItems:'center',
+              justifyContent:'center'
+          }}
+          onPress={() => showType07()}
+        >
+          <Text
+            style={{fontWeight:'bold'}}
+          >
+            Type07
           </Text>
         </TouchableOpacity>
       </View>

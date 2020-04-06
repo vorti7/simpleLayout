@@ -36,6 +36,12 @@ target 'simpleLayout' do
 
   pod 'ReactNativeNavigation', :podspec => '../node_modules/react-native-navigation/ReactNativeNavigation.podspec'
 
+  # React Native Maps dependencies
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
+
   target 'simpleLayoutTests' do
     inherit! :search_paths
     # Pods for testing

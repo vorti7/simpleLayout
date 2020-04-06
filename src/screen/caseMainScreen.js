@@ -32,6 +32,9 @@ const CaseMainScreen = (props) => {
     const caseShowType07 = () => {
         Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_CASE_TYPE_07)
     }
+    const caseShowType08 = () => {
+        Navigator.pushScreen(props.componentId, ScreenConst.SCREEN_CASE_TYPE_08)
+    }
 
 
 
@@ -175,6 +178,25 @@ const CaseMainScreen = (props) => {
                 style={{fontWeight:'bold'}}
                 >
                     Case 07
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{
+                    height: 40,
+                    width: '80%',
+                    backgroundColor: 'gray',
+                    borderWidth: 1,
+                    margin:'2.5%',
+                    paddingTop:5,
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}
+                onPress={() => caseShowType08()}
+            >
+                <Text
+                style={{fontWeight:'bold'}}
+                >
+                    Case 08
                 </Text>
             </TouchableOpacity>
         </View>

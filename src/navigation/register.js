@@ -34,6 +34,9 @@ export default function registerScreens() {
   Navigation.registerComponent(Const.SCREEN_TYPE_06, () =>
     Screens.TypeScreen06
   );
+  Navigation.registerComponent(Const.SCREEN_TYPE_07, () =>
+    Screens.TypeScreen07
+  );
 
 
   Navigation.registerComponent(Const.SCREEN_NOTUSE_MAIN, () =>
@@ -68,9 +71,11 @@ export default function registerScreens() {
   Navigation.registerComponent(Const.SCREEN_CASE_TYPE_06, () =>
     Screens.CaseScreen06
   );
-
   Navigation.registerComponent(Const.SCREEN_CASE_TYPE_07, () =>
     Screens.CaseScreen07
+  );
+  Navigation.registerComponent(Const.SCREEN_CASE_TYPE_08, () =>
+    Screens.CaseScreen08
   );
 
 
