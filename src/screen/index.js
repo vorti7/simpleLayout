@@ -35,3 +35,5 @@ export { default as CaseScreen07 } from './case07Screen'
 export { default as CaseScreen08 } from './case08Screen'
 
 export { default as LoadingScreen } from './loadingScreen'
+
+export { default as RequestDetailScreen } from './requestDetailScreen'

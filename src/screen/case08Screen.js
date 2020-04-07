@@ -14,9 +14,9 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
+import { ScreenConst, Navigator } from '../navigation'
   
 const Case08Screen = (props) => {
-
   const chatList = []
 
   const flatListRef = useRef(null);
@@ -33,7 +33,8 @@ const Case08Screen = (props) => {
           style={[styles.subHeaderContainer]}
       >
           <TouchableOpacity
-            onPress={() => setOpenExtra(!openExtra)}
+            onPress = {() =>{
+            }}
           >
               <Text style={[styles.subHeaderTitle]}>Disconnect</Text>
           </TouchableOpacity>
@@ -85,6 +86,7 @@ const Case08Screen = (props) => {
           // }}
           // chatInput={(chatData) => chatInput(chatData)}
           openExtra = {openExtra}
+          showExtra={() => setOpenExtra(!openExtra)}
       />
       </SafeAreaView>
   );
@@ -93,7 +95,6 @@ const Case08Screen = (props) => {
 function InputContainer(props){
     
   const [ inputText, setInputText ] = useState('')
-  const [ responseData, setResponseData ] = useState({})
 
   const openExtra = props.openExtra ? true : false
 
@@ -101,10 +102,102 @@ function InputContainer(props){
   const enableInput = Object.keys(extraInputData).length==0 ? true : extraInputData.allowInputMsg ? extraInputData.allowInputMsg : false
 
   const [animValue, setAnimValue] = useState(new Animated.Value(0))
+
+  const decisionList = [
+    {
+        text:"구성원 유형",
+        requestEditable:false,
+        request: {
+        	type: "SELECT_ONE",
+            requestID: "question#1",
+            allowInputMsg : false,
+            items: [
+                {
+                    title: "No one",
+                    value: "No one"
+                },
+                {
+                    title: "Couple",
+                    value: "Couple"
+                },
+                {
+                    title: "Friends",
+                    value: "Friends"
+                },
+                {
+                    title: "Family",
+                    value: "Family"
+                }
+            ]
+        }
+    },
+    {
+        text:"인원 정보",
+        requestEditable: false,
+        request: {
+        	type: "INPUT_MULTI",
+            requestID: "question#2",
+            allowInputMsg : false,
+            items : [
+                {
+                  type: 'NUMBER',
+                  title: 'Adults',
+                  legend: '',
+                  defaultValue: 0,
+                  minValue: 0,
+                  maxValue: 10,
+                  interval: 1,
+                },
+                {
+                  type: 'NUMBER',
+                  title: 'Children',
+                  legend: 'Age 2-12',
+                  defaultValue: 0,
+                  minValue: 0,
+                  maxValue: 10,
+                  interval: 1,
+                },
+                {
+                  type: 'NUMBER',
+                  title: 'Infants',
+                  legend: 'Under 2',
+                  defaultValue: 0,
+                  minValue: 0,
+                  maxValue: 10,
+                  interval: 1,
+                },
+            ]
+        }
+    },
+    {
+        text:"미팅 포인트",
+        requestEditable: true,
+        request: {
+        	type: "SELECT_ONE",
+            requestID: "question#3",
+            allowInputMsg : false,
+        }
+    },
+    {
+        text:"약속 시간",
+        requestEditable: true,
+        request: {
+        	type: "SELECT_ONE",
+            requestID: "question#4",
+            allowInputMsg : false,
+        }
+    },
+  ]
+
   const extraViewHeight = animValue.interpolate({
       inputRange: [0, 1],
-      outputRange: ["-100%", "0%"]
+    //   outputRange: ["-100%", "0%"]
+        outputRange: [0, -45 * decisionList.length]
   })
+
+  const testFunc = () => {
+      console.log("TEST!")
+  }
 
   useEffect(()=>{
     if(openExtra){
@@ -132,21 +225,132 @@ function InputContainer(props){
               style={{
                   bottom:extraViewHeight,
                   backgroundColor:"#e8eef4",
-                  paddingVertical: Object.keys(extraInputData).length>0 ? 13 : 5,
-                  paddingHorizontal:18,
               }}
           >
             <View>
-              <View
-                style={{width:"100%", height:50, backgroundColor:"red"}}
-              >
+                <View
+                    style={{
+                        flexDirection:"row",
+                        height:50,
+                        alignItems:"center"
+                    }}
+                >
+                    <View style={{paddingHorizontal:18}}>
+                        <Text>Required decision items</Text>
+                    </View>
+                    <View style={{paddingHorizontal:18}}>
+                        <Text>0/{decisionList.length} Complete</Text>
+                    </View>
+                    <View
+                        style={{
+                            flex:1,
+                            alignItems:"flex-end"
+                        }}
+                    >
+                    <TouchableOpacity
+                        onPress={() => props.showExtra()}
+                        style={{
+                            paddingHorizontal:18
+                        }}
+                    >
+                        <View
+                            style={{
+                                width:30,
+                                height:30,
+                                backgroundColor:"red"
+                            }}
+                        />
+                    </TouchableOpacity>
+                    </View>
 
-              </View>
-              <View
-                style={{width:"100%", height:200, backgroundColor:"blue"}}
-              >
+                </View>
+                <View>
+                    {
+                        decisionList.map(function(item){
+                            return (
+                                <View
+                                    style={{
+                                        height:45,
+                                        paddingVertical:4,
+                                        paddingHorizontal:18,
+                                        flexDirection:"row",
+                                        justifyContent:"space-between"
+                                    }}
+                                >
+                                    <View
+                                        style={{
+                                            flexDirection:"row",
+                                            alignItems:"center"
+                                        }}
+                                    >
+                                        <View>
+                                            <View
+                                                style={{
+                                                    width:30,
+                                                    height:30,
+                                                    backgroundColor:"red"
+                                                }}
+                                            />
+                                        </View>
+                                        <View style={{
+                                            paddingLeft:18
+                                        }}>
+                                            <Text>{item.text}</Text>
+                                        </View>
+                                    </View>
+                                    <View
+                                        style={{
+                                            flexDirection:"row",
+                                            alignItems:"center"
+                                        }}
+                                    >
+                                        <View style={{
+                                            paddingRight:18
+                                        }}>
+                                            <TouchableOpacity
+                                                style={{
+                                                    paddingHorizontal:18,
+                                                    paddingVertical:4,
+                                                    borderRadius:10,
+                                                    backgroundColor:"#2990c2"
+                                                }}
+                                                onPress = {() => {
+                                                    if(item.requestEditable){
+                                                        Navigator.showOverlay(ScreenConst.SCREEN_REQUEST_DETAIL, "requestDetail", {
+                                                            data:{
+                                                                requestID: item.request.requestID,
+                                                                testFunc:testFunc
+                                                            }
+                                                        })
+                                                    } else {
 
-              </View>
+                                                    }
+                                                }}
+                                            >
+                                            {
+                                                item.requestEditable ? (
+                                                    <Text style={{color:"#FFFFFF"}}>메시지 작성도구</Text>
+                                                ):(
+                                                    <Text style={{color:"#FFFFFF"}}>메시지 보내기</Text>
+                                                )
+                                            }
+                                            </TouchableOpacity>
+                                        </View>
+                                        <View>
+                                            <View
+                                                style={{
+                                                    width:30,
+                                                    height:30,
+                                                    backgroundColor:"red"
+                                                }}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+                            )
+                        })
+                    }
+                </View>
             </View>
           </Animated.View>
           <View style={{borderTopColor:'#d8dee5', backgroundColor:'#FFFFFF', borderTopWidth:1}}>

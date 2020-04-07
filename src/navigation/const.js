@@ -29,3 +29,5 @@ export const SCREEN_CASE_TYPE_07 = 'travut.screen.case.type.07'
 export const SCREEN_CASE_TYPE_08 = 'travut.screen.case.type.08'
 
 export const SCREEN_LOADING = 'travut.screen.loading'
+
+export const SCREEN_REQUEST_DETAIL = 'tavut.screen.request.detail'

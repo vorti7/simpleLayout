@@ -83,4 +83,8 @@ export default function registerScreens() {
   Navigation.registerComponent(Const.SCREEN_LOADING, () =>
     Screens.LoadingScreen
   );
+
+  Navigation.registerComponent(Const.SCREEN_REQUEST_DETAIL, () =>
+    Screens.RequestDetailScreen
+  )
 }

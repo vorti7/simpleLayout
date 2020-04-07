@@ -88,11 +88,12 @@ export default {
       Navigation.pop(cmpId)
     },
 
-    showOverlay(targetScreen, targetId){
+    showOverlay(targetScreen, targetId, passProps){
       Navigation.showOverlay({
         component: {
           name: targetScreen,
           id: targetId,
+          passProps: passProps, 
           options: {
             layout: {
               componentBackgroundColor: "transparent" // <-- Add this line
