@@ -1,11 +1,11 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import {
     View,
     Text,
     Image
 } from 'react-native';
 import { Navigator, ScreenConst } from '../navigation'
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
+import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion } from 'react-native-maps'
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
@@ -32,12 +32,19 @@ const Type07Screen = (props) => {
         }
     }
 
-    const [region, setRegion] = useState({
+    const initialRegion = {
         latitude: 37.78825,
         longitude: -122.4324,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
-    })
+    }
+
+    const [ markerCoordinate, setMarkerCoordinate ] = useState({"latitude": 37.77721975868359, "longitude": -122.4338846281171})
+
+    useEffect(() =>{
+        console.log(markerCoordinate)
+    }, [markerCoordinate])
+    
 
     return(
         <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
@@ -106,16 +113,24 @@ const Type07Screen = (props) => {
                     }}
                 >
                     <MapView
-                        // provider={PROVIDER_GOOGLE}
+                        provider={PROVIDER_GOOGLE}
                         style={{flex:1}}
-                        region = {region}
-                        onChnageRegion = {(region) => setRegion(region)}
+                        initialRegion = {initialRegion}
+                        zoomEnabled={false}
+                        onPoiClick={(poi) => console.log(poi.nativeEvent.coordinate)}
                     >
                         <Marker
-                            coordinate={region}
-                            title={"Marker"}
-                            description={"desc"}
-                        />
+                            coordinate={markerCoordinate}
+                            onSelect={e => console.log('onSelect')}
+                            onDrag={e => console.log('onDrag')}
+                            onDragStart={e => console.log('onDragStart')}
+                            onDragEnd={e => {
+                                console.log('onDragEnd')
+                                setMarkerCoordinate(e.nativeEvent.coordinate)
+                            }}
+                            onPress={e => console.log('onPress')}
+                            draggable
+                        ></Marker>
                     </MapView>
                 </GooglePlacesAutocomplete>
             </View>

@@ -37,3 +37,4 @@ export { default as CaseScreen08 } from './case08Screen'
 export { default as LoadingScreen } from './loadingScreen'
 
 export { default as RequestDetailScreen } from './requestDetailScreen'
+export { default as GetLocationScreen } from './getLocationScreen.js'

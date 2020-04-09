@@ -87,4 +87,8 @@ export default function registerScreens() {
   Navigation.registerComponent(Const.SCREEN_REQUEST_DETAIL, () =>
     Screens.RequestDetailScreen
   )
+
+  Navigation.registerComponent(Const.SCREEN_DETAIL_LOCATION, () =>
+    Screens.GetLocationScreen
+  )
 }
